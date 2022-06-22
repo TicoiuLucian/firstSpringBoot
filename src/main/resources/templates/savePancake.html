@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Save Pancake</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!-- POST Pancake-->
+<h1>Form</h1>
+<form action="#" th:action="@{/savePancake}" th:object="${pancakeObject}" method="post">
+    <p>Price: <input type="text" th:field="*{price}"/></p>
+    <p>Name: <input type="text" th:field="*{name}"/></p>
+    <p>Flavour: <input type="text" th:field="*{flavour}"/></p>
+    <p>Weight: <input type="text" th:field="*{weight}"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

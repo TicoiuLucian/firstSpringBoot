@@ -1,59 +1,48 @@
 package ro.itschool.controller;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ro.itschool.entity.Pancake;
 import ro.itschool.repository.PancakeRepository;
 
-import java.util.List;
-import java.util.Optional;
-
-@RestController
-@Log4j2
+@Controller
 public class PancakeController {
 
     @Autowired
     private PancakeRepository pancakeRepository;
 
-    @GetMapping(value = "/pancakes")
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<List<Pancake>> getPancake() {
-        final List<Pancake> pancakeList = pancakeRepository.findAll();
-        return new ResponseEntity<>(pancakeList, HttpStatus.OK);
-//        return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);
-//        return ResponseEntity.status(HttpStatus.FORBIDDEN)
-//                .body("Error Message");
+
+    //---------------------------------- GET all pancakes ------------------------------
+    @GetMapping("/pancakes")
+    public String getAllPancakes(Model model) {
+        model.addAttribute("pancakes", pancakeRepository.findAll());
+        return "allPancakes";
+    }
+    //-------------------------------------------------------------------
+
+
+    //------------------------------POST PANCAKE-------------------------
+    //Aici intra cand se incarca pagica si creeaza un Pancake gol
+    //Daca n-ar fi pancake gol, n-am avea unde sa ne salvam valorile
+    @GetMapping("/savePancake")
+    public String greetingForm(Model model) {
+        model.addAttribute("pancakeObject", new Pancake());
+        return "savePancake";
     }
 
-    @PostMapping(value = "/pancakes")
-    public ResponseEntity<Pancake> savePancake(@RequestBody Pancake pancake) {
-        return new ResponseEntity<>(pancakeRepository.save(pancake), HttpStatus.OK);
+    //Cand dam submit in html, aplicatia intra aici
+    //Pancake-ul vine populat din html
+    @PostMapping("/savePancake")
+    public String greetingSubmit(@ModelAttribute Pancake pancake, Model model) {
+        model.addAttribute("pancakeObject", pancake);
+        pancakeRepository.save(pancake);
+        return "redirect:allPancakes";
     }
-
-    @DeleteMapping(value = "/pancakes/{id}")
-    public ResponseEntity deletePancake(@PathVariable Integer id) {
-        Optional<Pancake> pancake = pancakeRepository.findById(id);
-        if (pancake.isPresent()) {
-            pancakeRepository.delete(pancake.get());
-            return new ResponseEntity("", HttpStatus.OK);
-        } else
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(String.format("Pancake with id %d was not found", id));
-    }
-
-    @GetMapping(value = "pancakes/{id}")
-    public ResponseEntity getPancakeById(@PathVariable Integer id) {
-        Optional<Pancake> pancake = pancakeRepository.findById(id);
-        if (pancake.isPresent())
-            return new ResponseEntity(pancake.get(), HttpStatus.OK);
-        else
-            return ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body(String.format("Pancake with id %d was not found", id));
-    }
+    //-------------------------------------------------------------------
 
 }

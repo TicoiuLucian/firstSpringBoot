@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Pancakes</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -12,19 +12,25 @@
     <tr>
         <th> ID</th>
         <th> Name</th>
+        <th> Flavour</th>
+        <th> Weight</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${pancakes.empty}">
-        <td colspan="2"> No Pancakes Available</td>
-    </tr>
     <tr th:each="pancake: ${pancakes}">
         <td><span th:text="${pancake.id}"> Id </span></td>
         <td><span th:text="${pancake.name}"> Name </span></td>
+        <td><span th:text="${pancake.flavour}"> Flavour </span></td>
+        <td><span th:text="${pancake.weight}"> Weight </span></td>
+        <td><span th:text="${pancake.price}"> Price </span></td>
     </tr>
     </tbody>
 </table>
 
+
+<a th:href="@{/savePancake}">
+    <button type="button"> Add new Pancake</button>
+</a>
 
 </body>
 </html>

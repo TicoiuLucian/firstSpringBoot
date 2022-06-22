@@ -11,7 +11,7 @@ import ro.itschool.repository.PancakeRepository;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+// @RestController
 @Log4j2
 public class OldPancakeController {
 

@@ -17,7 +17,7 @@ public class Pancake {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
+    private String wrapper;
     private String name;
 
     private String flavour;

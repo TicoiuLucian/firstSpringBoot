@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p th:text="'Hello, ' + ${name} + '!'"/>
+
+<table>
+    <thead>
+    <tr>
+        <th> ID</th>
+        <th> Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${pancakes.empty}">
+        <td colspan="2"> No Pancakes Available</td>
+    </tr>
+    <tr th:each="pancake: ${pancakes}">
+        <td><span th:text="${pancake.id}"> Id </span></td>
+        <td><span th:text="${pancake.name}"> Name </span></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

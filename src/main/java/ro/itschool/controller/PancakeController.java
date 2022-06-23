@@ -18,7 +18,7 @@ public class PancakeController {
 
 
     //---------------------------------- GET all pancakes ------------------------------
-    @GetMapping("/pancakes")
+    @GetMapping("/allPancakes")
     public String getAllPancakes(Model model) {
         model.addAttribute("pancakes", pancakeRepository.findAll());
         return "allPancakes";

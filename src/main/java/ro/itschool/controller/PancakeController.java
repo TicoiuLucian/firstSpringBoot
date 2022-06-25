@@ -3,10 +3,7 @@ package ro.itschool.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ro.itschool.entity.Pancake;
 import ro.itschool.repository.PancakeRepository;
 
@@ -25,6 +22,27 @@ public class PancakeController {
     }
     //-------------------------------------------------------------------
 
+    //---------------------------------- Get by ID ------------------------------
+    @GetMapping("/findByIdForm")
+    public String form(Model model) {
+        model.addAttribute("data", new Pancake());
+        return "findByIdForm";
+    }
+
+    @PostMapping("/findByIdForm")
+    public String getPancakeForm(Pancake data) {
+        return "redirect:/pancakes/"+data.getId();
+    }
+
+    @GetMapping("/pancakes/{id}")
+    public String getPancakeById(@PathVariable Integer id, Model model) {
+        if(pancakeRepository.findById(id).isPresent()) {
+            model.addAttribute("pancake", pancakeRepository.findById(id).get());
+        }
+        else return "redirect:/pancakes";
+        return "findPancakeById";
+    }
+    //-------------------------------------------------------------------
 
     //------------------------------POST PANCAKE-------------------------
     //Aici intra cand se incarca pagica si creeaza un Pancake gol
@@ -44,5 +62,6 @@ public class PancakeController {
         return "redirect:allPancakes";
     }
     //-------------------------------------------------------------------
+    //Tema: GetById
 
 }

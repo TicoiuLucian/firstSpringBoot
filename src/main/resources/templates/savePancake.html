@@ -1,18 +1,51 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Save Pancake</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 </head>
 <body>
 <!-- POST Pancake-->
-<h1>Form</h1>
-<form action="#" th:action="@{/savePancake}" th:object="${pancakeObject}" method="post">
-    <p>Price: <input type="text" th:field="*{price}"/></p>
-    <p>Name: <input type="text" th:field="*{name}"/></p>
-    <p>Flavour: <input type="text" th:field="*{flavour}"/></p>
-    <p>Weight: <input type="text" th:field="*{weight}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-</form>
+<div class="container my-5">
+    <h1>Add Pancake</h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/savePancake}" th:object="${pancakeObject}" method="post">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="name" class="col-form-label">Name</label>
+                            <input type="text" th:field="*{name}" class="form-control"
+                                   id="name" placeholder="Name"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="flavour" class="col-form-label">Flavour</label>
+                            <input type="text" th:field="*{flavour}" class="form-control"
+                                   id="flavour" placeholder="Flavour"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="weight" class="col-form-label">Weight</label>
+                            <input type="text" th:field="*{weight}" class="form-control"
+                                   id="weight" placeholder="Weight"/>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="price" class="col-form-label">Price</label>
+                            <input type="text" th:field="*{price}" class="form-control"
+                                   id="price" placeholder="Price"/>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-success" value="Submit">
+                            <input type="reset" class="btn btn-success" value="Reset"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

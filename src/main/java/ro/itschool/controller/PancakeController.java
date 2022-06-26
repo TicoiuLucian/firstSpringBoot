@@ -1,14 +1,18 @@
 package ro.itschool.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import ro.itschool.entity.Pancake;
 import ro.itschool.repository.PancakeRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PancakeController {
@@ -27,7 +31,7 @@ public class PancakeController {
 
 
     //------------------------------POST PANCAKE-------------------------
-    //Aici intra cand se incarca pagica si creeaza un Pancake gol
+    //Aici intra cand se incarca pagina si creeaza un Pancake gol
     //Daca n-ar fi pancake gol, n-am avea unde sa ne salvam valorile
     @GetMapping("/savePancake")
     public String greetingForm(Model model) {
@@ -45,4 +49,17 @@ public class PancakeController {
     }
     //-------------------------------------------------------------------
 
+    //------------------------------SEARCH PANCAKE BY NAME-------------------------
+
+    @GetMapping("/searchPancake")
+    public String getPancakeByName(Model model) {
+        model.addAttribute("searchPancake", new Pancake());
+        return "searchPancake";
+    }
+
+    @PostMapping("/searchPancake")
+    public String displayPancakeByName(@ModelAttribute Pancake pancake, Model model) {
+        model.addAttribute("searchPancake", pancakeRepository.findByName(pancake.getName()));
+        return "displayPancake";
+    }
 }

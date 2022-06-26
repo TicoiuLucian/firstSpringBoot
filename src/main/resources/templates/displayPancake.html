@@ -6,14 +6,6 @@
 </head>
 <body>
 
-<a th:href="@{/savePancake}">
-    <button type="button"> Add new Pancake</button>
-</a>
-
-<a th:href="@{/searchPancake}">
-    <button type="button"> Search Pancake by Name</button>
-</a>
-
 <table>
     <thead>
     <tr>
@@ -25,7 +17,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="pancake: ${pancakes}">
+    <tr th:each="pancake: ${searchPancake}">
         <td><span th:text="${pancake.id}"> Id </span></td>
         <td><span th:text="${pancake.name}"> Name </span></td>
         <td><span th:text="${pancake.flavour}"> Flavour </span></td>
@@ -35,6 +27,9 @@
     </tbody>
 </table>
 
+<a th:href="@{/searchPancake}">
+    <button type="button"> Search New Pancake by Name</button>
+</a>
 
 </body>
 </html>

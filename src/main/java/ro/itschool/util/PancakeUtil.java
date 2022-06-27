@@ -19,7 +19,7 @@ public class PancakeUtil {
     public void loadData() {
 
         Faker faker = new Faker();
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             Pancake pancake = new Pancake();
             pancake.setName(faker.funnyName().name());
             pancake.setFlavour(faker.food().fruit());

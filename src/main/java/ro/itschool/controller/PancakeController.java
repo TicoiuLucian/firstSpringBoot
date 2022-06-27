@@ -1,16 +1,17 @@
 package ro.itschool.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import ro.itschool.entity.Pancake;
 import ro.itschool.repository.PancakeRepository;
 
+
 @Controller
+
 public class PancakeController {
 
     @Autowired
@@ -27,7 +28,7 @@ public class PancakeController {
 
 
     //------------------------------POST PANCAKE-------------------------
-    //Aici intra cand se incarca pagica si creeaza un Pancake gol
+    //Aici intra cand se incarca pagina si creeaza un Pancake gol
     //Daca n-ar fi pancake gol, n-am avea unde sa ne salvam valorile
     @GetMapping("/savePancake")
     public String greetingForm(Model model) {
@@ -43,6 +44,38 @@ public class PancakeController {
         pancakeRepository.save(pancake);
         return "redirect:allPancakes";
     }
-    //-------------------------------------------------------------------
+
+    //----------------------------Update---------------------------------------//
+
+
+
+    @GetMapping("/updatePancake/{id}")
+    public String getPancakeById(@PathVariable Integer id, Model model) {
+        if (pancakeRepository.findById(id).isPresent()) {
+            model.addAttribute("pancake", pancakeRepository.findById(id).get());
+            return "updatePancake";
+        }
+        return ("Pancake not found for this id : " + id);
+    }
+
+    @PutMapping("/updatePancake/{id}")
+    public String updatedPancake(@PathVariable(value = "id") Integer id,@RequestBody Pancake pancake1) {
+        Pancake pancake = pancakeRepository.findById(id).get();
+        pancake.setName(pancake1.getName());
+        pancake.setPrice(pancake1.getPrice());
+        pancake.setFlavour(pancake1.getFlavour());
+        pancake.setWeight(pancake1.getWeight());
+        final Pancake updatedPancake = pancakeRepository.save(pancake);
+        return "allPancakes";
+    }
+
+
 
 }
+
+
+
+
+
+
+

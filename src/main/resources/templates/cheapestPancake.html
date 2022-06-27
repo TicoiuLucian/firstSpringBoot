@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Save Pancake</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!-- POST Pancake-->
+<h1>Form</h1>
+<form action="#" th:action="@{/cheapestPancake/{price}}" th:object="${pancakeObject}" method="post">
+    <p>Price: <input type="text" th:field="*{price}"/></p>
+    <p><input type="Cheapest Pancake" value="Cheapest Pancake"/> <input type="reset" value="Reset"/></p>
+</form>
+</body>
+</html>

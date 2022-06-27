@@ -22,6 +22,7 @@ public class OldPancakeController {
     @GetMapping(value = "/pancakes")
     @ExceptionHandler(Exception.class)
     public ResponseEntity<List<Pancake>> getPancake() {
+        log.info("Getting all pancakes");
         final List<Pancake> pancakeList = pancakeRepository.findAll();
         return new ResponseEntity<>(pancakeList, HttpStatus.OK);
 //        return new ResponseEntity<>("Error message", HttpStatus.BAD_REQUEST);

@@ -25,4 +25,7 @@ public class Pancake {
     private Integer weight;
 
     private Integer price;
+
+
+
 }

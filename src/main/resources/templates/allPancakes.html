@@ -24,6 +24,9 @@
                                 <th> Name</th>
                                 <th> Flavour</th>
                                 <th> Weight</th>
+                                <th> Price</th>
+                                <th> Update</th>
+                                <th> Delete</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,12 +37,12 @@
                                 <td><span th:text="${pancake.weight}"> Weight </span></td>
                                 <td><span th:text="${pancake.price}"> Price </span></td>
                                 <td>
-                                    <a th:href="@{/updatePancake/{id}(id=${pancake.id})}" class="btn btn-info">Update</a>
+                                    <a th:href="@{/updatePancake/{id}(id=${pancake.id})}"
+                                       class="fa fa-edit"/>
                                 </td>
                                 <td>
                                     <a th:href="@{/delete/{id}(id=${pancake.id})}"
-                                       class="btn btn-danger">Delete</button>
-                                    </a>
+                                       class="fa fa-trash"/>
                                 <td>
                             </tr>
                             </tbody>

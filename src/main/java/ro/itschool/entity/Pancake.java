@@ -18,6 +18,8 @@ public class Pancake {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private String Wrapper;
+
     private String name;
 
     private String flavour;

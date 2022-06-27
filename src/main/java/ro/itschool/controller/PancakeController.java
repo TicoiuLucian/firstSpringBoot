@@ -58,16 +58,16 @@ public class PancakeController {
         return ("Pancake not found for this id : " + id);
     }
 
-    @PutMapping("/updatePancake/{id}")
-    public String updatedPancake(@PathVariable(value = "id") Integer id,@RequestBody Pancake pancake1) {
-        Pancake pancake = pancakeRepository.findById(id).get();
-        pancake.setName(pancake1.getName());
-        pancake.setPrice(pancake1.getPrice());
-        pancake.setFlavour(pancake1.getFlavour());
-        pancake.setWeight(pancake1.getWeight());
-        final Pancake updatedPancake = pancakeRepository.save(pancake);
-        return "allPancakes";
-    }
+//    @PostMapping("/updatePancake")
+//    public String updatedPancake(@PathVariable(value = "id") Integer id,@RequestBody Pancake pancake1) {
+//        Pancake pancake = pancakeRepository.findById(id).get();
+//        pancake.setName(pancake1.getName());
+//        pancake.setPrice(pancake1.getPrice());
+//        pancake.setFlavour(pancake1.getFlavour());
+//        pancake.setWeight(pancake1.getWeight());
+//        final Pancake updatedPancake = pancakeRepository.save(pancake);
+//        return "allPancakes";
+//    }
 
 
 

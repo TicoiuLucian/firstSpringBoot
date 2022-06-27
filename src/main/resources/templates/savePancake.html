@@ -7,7 +7,7 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-          crossorigin="anonymous" />
+          crossorigin="anonymous"/>
 </head>
 <body>
 
@@ -18,13 +18,13 @@
 
     <form action="#" th:action="@{/savePancake}" th:object="${pancakeObject}" method="post">
 
-        <input type="text" th:field="*{name}" class="form-control col-4 mb-4" placeholder="Enter name"  />
+        <input id="name" type="text" th:field="*{name}" class="form-control col-4 mb-4" placeholder="Enter name"/>
 
-        <input type="text" th:field="*{price}" class="form-control col-4 mb-4" placeholder="Enter price" />
+        <input type="text" th:field="*{price}" class="form-control col-4 mb-4" placeholder="Enter price"/>
 
-        <input type="text" th:field="*{flavour}" class="form-control col-4 mb-4" placeholder="Enter flavour" />
+        <input type="text" th:field="*{flavour}" class="form-control col-4 mb-4" placeholder="Enter flavour"/>
 
-        <input type="text" th:field="*{weight}" class="form-control col-4 mb-4" placeholder="Enter weight" />
+        <input type="text" th:field="*{weight}" class="form-control col-4 mb-4" placeholder="Enter weight"/>
 
         <button type="submit" class="btn btn-primary col-2">Save</button>
     </form>

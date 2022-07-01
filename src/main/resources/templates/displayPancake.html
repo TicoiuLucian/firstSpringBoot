@@ -2,34 +2,59 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Pancakes</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 </head>
 <body>
 
-<table>
-    <thead>
-    <tr>
-        <th> ID</th>
-        <th> Name</th>
-        <th> Flavour</th>
-        <th> Weight</th>
-        <th> Price</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="pancake: ${searchPancake}">
-        <td><span th:text="${pancake.id}"> Id </span></td>
-        <td><span th:text="${pancake.name}"> Name </span></td>
-        <td><span th:text="${pancake.flavour}"> Flavour </span></td>
-        <td><span th:text="${pancake.weight}"> Weight </span></td>
-        <td><span th:text="${pancake.price}"> Price </span></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${searchPancake}" class="container my-5">
+                <div class="col-md-10">
+                    <h2 th:case="null">No record found!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th> ID</th>
+                                <th> Name</th>
+                                <th> Flavour</th>
+                                <th> Weight</th>
+                                <th> Price</th>
+                                <th> Update</th>
+                                <th> Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="pancake: ${searchPancake}">
+                                <td><span th:text="${pancake.id}"> Id </span></td>
+                                <td><span th:text="${pancake.name}"> Name </span></td>
+                                <td><span th:text="${pancake.flavour}"> Flavour </span></td>
+                                <td><span th:text="${pancake.weight}"> Weight </span></td>
+                                <td><span th:text="${pancake.price}"> Price </span></td>
+                                <td>
+                                    <a th:href="@{/updatePancake/{id}(id=${pancake.id})}"
+                                       class="fa fa-edit"/>
+                                </td>
+                                <td>
+                                    <a th:href="@{/delete/{id}(id=${pancake.id})}"
+                                       class="fa fa-trash"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a th:href="@{/searchPancake}">
+                            <button type="button" class="btn btn-primary"> Search New Pancake by Name</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<a th:href="@{/searchPancake}">
-    <button type="button"> Search New Pancake by Name</button>
-</a>
 
 </body>
 </html>

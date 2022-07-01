@@ -10,6 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 import ro.itschool.entity.Pancake;
 import ro.itschool.repository.PancakeRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class PancakeController {
@@ -66,5 +69,36 @@ public class PancakeController {
     {
         pancakeRepository.deleteById(id);
         return "redirect:/pancakes";
+    }
+
+    //----------------------------Search---------------------------------------//
+    @RequestMapping(path = "/search")
+    public String searchPancake(Model model, String keyword) {
+        List<Pancake> pancakeList = pancakeRepository.findAll();
+        if(!keyword.isEmpty()) {
+            List<Pancake> pancakes = new ArrayList<>();
+            for (Pancake p : pancakeList) {
+                if (p.getId().toString().contains(keyword) && !pancakes.contains(p)) {
+                    pancakes.add(p);
+                }
+                if(p.getName().contains(keyword) && !pancakes.contains(p)) {
+                    pancakes.add(p);
+                }
+                if(p.getFlavour().contains(keyword) && !pancakes.contains(p)) {
+                    pancakes.add(p);
+                }
+                if(p.getPrice().toString().contains(keyword) && !pancakes.contains(p)) {
+                    pancakes.add(p);
+                }
+                if(p.getWeight().toString().contains(keyword) && !pancakes.contains(p)) {
+                    pancakes.add(p);
+                }
+            }
+            model.addAttribute("pancakes", pancakes);
+        }
+        else {
+            model.addAttribute("pancakes", pancakeList);
+        }
+        return "allPancakes";
     }
 }

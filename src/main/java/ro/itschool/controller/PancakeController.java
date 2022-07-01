@@ -46,7 +46,7 @@ public class PancakeController {
     public String greetingSubmit(@ModelAttribute Pancake pancake, Model model) {
         model.addAttribute("pancakeObject", pancake);
         pancakeRepository.save(pancake);
-        return "redirect:allPancakes";
+        return "allPancakes";
     }
     //-------------------------------------------------------------------
 
@@ -63,4 +63,30 @@ public class PancakeController {
         model.addAttribute("searchPancake", pancakeRepository.findByName(pancake.getName()));
         return "displayPancake";
     }
+
+    //----------------------------Update---------------------------------------//
+
+
+
+    @GetMapping("/updatePancake/{id}")
+    public String getPancakeById(@PathVariable Integer id, Model model) {
+        if (pancakeRepository.findById(id).isPresent()) {
+            model.addAttribute("pancake", pancakeRepository.findById(id).get());
+            return "updatePancake";
+        }
+        return ("Pancake not found for this id : " + id);
+    }
+
+
+
+    @RequestMapping(path = "/delete/{id}")
+    public String deletePancakeById(Model model, @PathVariable("id") Integer id)
+            throws Exception
+    {
+        pancakeRepository.deleteById(id);
+        return "redirect:/pancakes";
+    }
 }
+
+
+

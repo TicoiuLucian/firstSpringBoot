@@ -61,9 +61,7 @@ public class PancakeController {
 
 
     @RequestMapping(path = "/delete/{id}")
-    public String deletePancakeById(Model model, @PathVariable("id") Integer id)
-            throws Exception
-    {
+    public String deletePancakeById(Model model, @PathVariable("id") Integer id) {
         pancakeRepository.deleteById(id);
         return "redirect:/pancakes";
     }

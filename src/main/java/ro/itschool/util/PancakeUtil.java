@@ -7,6 +7,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import ro.itschool.entity.Pancake;
+import ro.itschool.entity.Topping;
 import ro.itschool.repository.PancakeRepository;
 
 @Component
@@ -17,9 +18,8 @@ public class PancakeUtil {
 
     @EventListener(ApplicationReadyEvent.class)
     public void loadData() {
-
         Faker faker = new Faker();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             Pancake pancake = new Pancake();
             pancake.setName(faker.funnyName().name());
             pancake.setFlavour(faker.food().fruit());
@@ -27,6 +27,15 @@ public class PancakeUtil {
             pancake.setWeight(faker.number().numberBetween(50, 150));
             pancakeRepository.save(pancake);
         }
-    }
 
+        for (int j = 0; j < 5; j++) {
+            Topping topping = new Topping();
+            topping.setName(faker.funnyName().name());
+            topping.setFlavour(faker.food().fruit());
+            topping.setPrice(faker.number().randomDigitNotZero());
+        }
+
+    }
 }
+
+

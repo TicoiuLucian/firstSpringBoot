@@ -46,7 +46,7 @@ public class PancakeController {
     public String greetingSubmit(@ModelAttribute Pancake pancake, Model model) {
         model.addAttribute("pancakeObject", pancake);
         pancakeRepository.save(pancake);
-        return "allPancakes";
+        return "redirect:/pancakes";
     }
     //-------------------------------------------------------------------
 

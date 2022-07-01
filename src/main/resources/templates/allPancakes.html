@@ -14,6 +14,11 @@
                 <p class="my-5">
                     <a href="/savePancake" class="btn btn-primary">Add Pancake</button></a>
                 </p>
+                <form th:action="@{/search}" method="get">
+                    <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find Pancake" size="50" >
+                    <button type="submit" class="btn btn-info" >Search</button>
+                    <button type="submit" class="btn btn-info" >Reset</button>
+                </form>
                 <div class="col-md-10">
                     <h2 th:case="null">No record found!</h2>
                     <div th:case="*">

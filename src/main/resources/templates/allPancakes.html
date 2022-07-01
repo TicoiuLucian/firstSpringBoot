@@ -15,58 +15,58 @@
                     <a href="/savePancake" class="btn btn-primary">Add Pancake</button></a>
                 </p>
                 <p class="my-5">
-                <a href="@{/searchPancake}" class="btn btn-primary">Search Pancake by Name</button></a>
+                    <a href="@{/searchPancake}" class="btn btn-primary">Search Pancake by Name</button></a>
                 </p>
                 <form th:action="@{/pancakes}">
                     Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required/>
                     &nbsp;
                     <button type="submit" class="btn btn-info">Search</button>
-                    <button type="reset" class="btn btn-info">Reset</button>
+                    <button type="reset" class="btn btn-info" onclick="clearSearch()">Reset</button>
                     &nbsp;
-<!--                    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()"/>-->
 
                     <script type="text/javascript">
     function clearSearch() {
         window.location = "[[@{/pancakes}]]";
     }
 
+
                     </script>
                 </form>
-                    <div class="col-md-10">
-                        <h2 th:case="null">No record found!</h2>
-                        <div th:case="*">
-                            <table class="table table-striped table-responsive-md">
-                                <thead>
-                                <tr>
-                                    <th> ID</th>
-                                    <th> Name</th>
-                                    <th> Flavour</th>
-                                    <th> Weight</th>
-                                    <th> Price</th>
-                                    <th> Update</th>
-                                    <th> Delete</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="pancake: ${pancakes}">
-                                    <td><span th:text="${pancake.id}"> Id </span></td>
-                                    <td><span th:text="${pancake.name}"> Name </span></td>
-                                    <td><span th:text="${pancake.flavour}"> Flavour </span></td>
-                                    <td><span th:text="${pancake.weight}"> Weight </span></td>
-                                    <td><span th:text="${pancake.price}"> Price </span></td>
-                                    <td>
-                                        <a th:href="@{/updatePancake/{id}(id=${pancake.id})}"
-                                           class="fa fa-edit"/>
-                                    </td>
-                                    <td>
-                                        <a th:href="@{/delete/{id}(id=${pancake.id})}"
-                                           class="fa fa-trash"/>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                <div class="col-md-10">
+                    <h2 th:case="null">No record found!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th> ID</th>
+                                <th> Name</th>
+                                <th> Flavour</th>
+                                <th> Weight</th>
+                                <th> Price</th>
+                                <th> Update</th>
+                                <th> Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="pancake: ${pancakes}">
+                                <td><span th:text="${pancake.id}"> Id </span></td>
+                                <td><span th:text="${pancake.name}"> Name </span></td>
+                                <td><span th:text="${pancake.flavour}"> Flavour </span></td>
+                                <td><span th:text="${pancake.weight}"> Weight </span></td>
+                                <td><span th:text="${pancake.price}"> Price </span></td>
+                                <td>
+                                    <a th:href="@{/updatePancake/{id}(id=${pancake.id})}"
+                                       class="fa fa-edit"/>
+                                </td>
+                                <td>
+                                    <a th:href="@{/delete/{id}(id=${pancake.id})}"
+                                       class="fa fa-trash"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+                </div>
             </div>
         </div>
     </div>

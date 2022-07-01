@@ -16,8 +16,12 @@ public class PancakeController {
 
     //---------------------------------- GET all pancakes ------------------------------
     @GetMapping("/pancakes")
-    public String getAllPancakes(Model model) {
-        model.addAttribute("pancakes", pancakeRepository.findAll());
+    public String getAllPancakes(Model model, @RequestParam(value = "keyword", required = false) String keyword) {
+        if (keyword != null){
+            model.addAttribute("pancakes", pancakeRepository.search(keyword));
+        }
+        else{
+        model.addAttribute("pancakes", pancakeRepository.findAll());}
         return "allPancakes";
     }
     //-------------------------------------------------------------------

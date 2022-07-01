@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pancakes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Flavour</th>
+        <th>Weight</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td align="center"><span th:text="${pancake.id}"> Id </span></td>
+        <td align="center"><span th:text="${pancake.name}"> Name </span></td>
+        <td align="center"><span th:text="${pancake.flavour}"> Flavour </span></td>
+        <td align="center"><span th:text="${pancake.weight}"> Weight </span></td>
+        <td align="center"><span th:text="${pancake.price}"> Price </span></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
